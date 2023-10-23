@@ -221,27 +221,6 @@ newfeature=pd.DataFrame(scaled, columns=newfeature.columns)
 
 if st.button("Predict"):
 
-    
+    prediction = model.predict(newfeature)
+    st.write(f"Predicted Output: {prediction}")
 
-
-    # Create an empty list to store multiple predictions
-    predictions = []
-
-    # Number of Monte Carlo simulations for estimating prediction intervals
-    num_simulations = 100  # You can adjust this as needed
-
-    for _ in range(num_simulations):
-        # Perturb the input features slightly to simulate variations
-        perturbed_feature = newfeature.copy()  # Copy the scaled features
-        perturbed_feature += np.random.normal(0, 0.1, size=perturbed_feature.shape)  # Add some noise
-
-        # Make predictions for the perturbed feature
-        prediction = model.predict(perturbed_feature)
-        predictions.append(prediction[0])
-
-    # Calculate the standard deviation of the predictions
-    std_dev = np.std(predictions)
-
-    # Display the prediction and confidence (standard deviation)
-    st.write(f"Predicted Output: {np.mean(predictions)}")
-    st.write(f"Prediction Confidence : {std_dev:.4f}")
