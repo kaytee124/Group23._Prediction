@@ -1,3 +1,17 @@
+import pip
+from pip._internal import main as pip_main
+
+# Define the package name
+package_name = 'scikit-learn'
+
+# Install the package using pip
+try:
+    pip_main(['install', package_name])
+    print(f'Successfully installed {package_name}')
+except Exception as e:
+    print(f'Error: {e}')
+
+
 import streamlit as st
 import pickle
 import numpy as np
